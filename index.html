@@ -112,10 +112,17 @@ var previous = document.querySelector(".previous");
 
 
 // refresh video frames on interval for smoother playback
-setInterval(function(){
-    vid.currentTime = (window.pageYOffset-1000)/400;
-}, 100);
+// setInterval(function(){
+//     vid.currentTime = (window.pageYOffset-1000)/400;
+// }, 100);
 
+function updateScreen(time) {
+  // Make visual updates here.
+  vid.currentTime = (window.pageYOffset-1000)/400;
+  window.requestAnimationFrame(updateScreen);
+}
+
+window.requestAnimationFrame(updateScreen);
 
 </script>
 </body>
