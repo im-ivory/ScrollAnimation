@@ -1,103 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-     * { box-sizing: border-box; }
-body {
-	margin: 0;
-	font-family: sans-serif;
-	font-size: 1.4rem;
-}
+	<meta charset="UTF-8">
+	<title>Scroll untuk play video | Tutorial-Webdesign.com</title>
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	<script>
+	function scrollVideo() {
+	  var video = $('#video').get(0),
+	    videoLength = video.duration,
+	    scrollPosition = $(document).scrollTop();
+	  
+	  video.currentTime = (scrollPosition / ($(document).height() - $(window).height())) * videoLength;
+	}
 
-#bound-one {
-	background: #d0d8db;
-}
-#bound-two {
-	background: #dfcece;
-}
-#bound-three {
-	background: #D0D6B3;
-}
-.scroll-bound {
-	height: 1000vh;
-	
-}
-.scroll-bound 	.content {
-		height: 100vh;
-		width: 100%;
-		position: sticky;
-		top:0;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-	}
-    .scroll-bound video {
-		width: 80%;
-	}
-	
-    </style>
+	$(window).scroll(function(e) {
+	  scrollVideo();
+	});
+	</script>
+
+	<style>
+		*{
+			padding: 0;margin: 0;
+		}
+		html {
+		  height:100%;
+		}
+		body {
+		  height: 4000px;
+		}
+		video {
+		  position: fixed;
+		  left: 50%;
+		  top: 0;
+		  min-width: 100%;
+		  min-height: 100%;
+		  width: auto;
+		  height: auto;
+		  z-index: -100;
+		  background-size: cover;
+		  -moz-transform: translateX(-50%);
+		  transform: translateX(-50%);
+		}
+		h1 {
+		  position: fixed;
+		  top: 50%;
+		  left: 50%;
+		  width: 100%;
+		  -moz-transform: translate(-50%,-50%);
+		  transform: translate(-50%,-50%);
+		  z-index: 99;
+		  font-family: HelveticaNeue, Helvetica, sans-serif;
+		  font-size:8vmin;
+		  text-align:center;
+		  color: white;
+		}
+	</style>
+
 </head>
 <body>
-    <div class="app">
-        <!-- <div id="bound-one" class="scroll-bound">
-            <div class="content">
-                <p>WebM Video</p>
-                 <video width="600" muted preload>
-                    <source src="https://cdn.ananaspizza.de/file/malte-image-store/v9-webm.webm" type="video/webm">
-                    <p>Your user agent does not support the HTML5 Video element.</p>
-          </video>
-            </div>
-        </div> -->
-        
-        <div id="bound-two" class="scroll-bound">
-            <div class="content">
-                <p>MP4 Video - Keyframe Interval 1</p>
-                 <video width="600" muted preload>
-                   <source src="Test_Donga.mp4" type="video/mp4">
-                <p>Your user agent does not support the HTML5 Video element.</p>
-          </video>
-            </div>
-        </div>
-        
-        <!-- <div id="bound-three" class="scroll-bound">
-            <div class="content">
-                <p>MP4 Video - Keyframe Interval 20</p>
-                 <video width="600" muted preload>
-                   <source src="https://cdn.ananaspizza.de/file/malte-image-store/keyframe-interval-20.mp4" type="video/mp4">
-                <p>Your user agent does not support the HTML5 Video element.</p>
-          </video>
-            </div>
-        </div> -->
-        
-    </div>
-    <script>
-        const registerVideo = (bound, video) => {
-	bound = document.querySelector(bound);
-	video = document.querySelector(video);
-	const scrollVideo = ()=>{
-		if(video.duration) {
-			const distanceFromTop = window.scrollY + bound.getBoundingClientRect().top;
-			const rawPercentScrolled = (window.scrollY - distanceFromTop) / (bound.scrollHeight - window.innerHeight);
-			const percentScrolled = Math.min(Math.max(rawPercentScrolled, 0), 1);
-			
-			video.currentTime = video.duration * percentScrolled;
-		}
-		requestAnimationFrame(scrollVideo);
-	}
-	requestAnimationFrame(scrollVideo);
-}
+	
+<h1>Scroll to play video &#9658;</h1>
+<video id="video" src="Test_Donga.mp4"></video>
 
-
-registerVideo("#bound-one", "#bound-one video");
-
-registerVideo("#bound-two", "#bound-two video")
-
-registerVideo("#bound-three", "#bound-three video")
-    </script>
 </body>
 </html>
