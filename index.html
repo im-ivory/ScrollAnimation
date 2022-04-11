@@ -224,12 +224,13 @@ if (userAgent.match('iphone') || userAgent.match('ipod'))
 {    //아이폰
 
   alert("iphone");
-  const canvas = document.querySelector(".container .videoWrapper canvas");
-  canvas.style.display = "none";
   const videoWrapper = document.querySelector(".videoWrapper");
     const video = document.createElement("video");
     video.src = 'Test_Donga.mp4';
     video.id = 'v0';
+    video.setAttribute("autoplay","autoplay");
+    video.setAttribute("playsinline", "playsinline")
+    video.setAttribute("muted", "muted");
     videoWrapper.appendChild(video);
 
     var vid = document.getElementById('v0');
@@ -239,14 +240,6 @@ if (userAgent.match('iphone') || userAgent.match('ipod'))
     vid.pause();
     
     // pause video on document scroll (stops autoplay once scroll started)
-
-    var previous = document.querySelector(".previous");
-
-        window.onscroll = function(){
-        vid.pause();
-    };
-
-
 
     // refresh video frames on interval for smoother playback
     setInterval(function(){
