@@ -216,9 +216,9 @@ section > h1{
         <h1>TEST</h1>
     </div>
     <script>
-var UserAgent = navigator.platform;
+var UserAgent = navigator.userAgent.toLocaleLowerCase();
 
-if(UserAgent.match(/i(Phone|Pod)/i)!= null){
+if(UserAgent.indexOf("iphone")!== -1){
     const videoWrapper = document.querySelector(".videoWrapper");
     const video = document.createElement("video");
     video.src = 'Test_Donga.mp4';
