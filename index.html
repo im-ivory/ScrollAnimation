@@ -165,6 +165,7 @@ table {
    top: 50%;
    left: 50%;
    transform: translate(-50%, -50%);
+   width:100%;
 }
 .container .videoWrapper div {
    position: absolute;
@@ -181,7 +182,7 @@ table {
 }
 section{  
     display: block;
-    width: 500px;
+    width: 100px;
     height: 3000px;
     margin-left: 100px;
 }
@@ -215,7 +216,39 @@ section > h1{
         <h1>TEST</h1>
     </div>
     <script>
-var video = document.querySelector(".container .videoWrapper video");
+var UserAgent = navigator.platform;
+
+if(UserAgent.match(/i(Phone|Pod)/i)!= null){
+    const videoWrapper = document.querySelector(".videoWrapper");
+    const video = document.createElement("video");
+    video.src = 'Test_Donga.mp4';
+    video.id = 'v0';
+    videoWrapper.appendChild(video);
+
+    var vid = document.getElementById('v0');
+    //var vid = $('#v0')[0]; // jquery option
+
+    // pause video on load
+    vid.pause();
+    
+    // pause video on document scroll (stops autoplay once scroll started)
+
+    var previous = document.querySelector(".previous");
+
+        window.onscroll = function(){
+        vid.pause();
+    };
+
+
+
+    // refresh video frames on interval for smoother playback
+    setInterval(function(){
+        vid.currentTime = (window.pageYOffset-1000)/400;
+    }, 40);
+
+
+} else{
+    var video = document.querySelector(".container .videoWrapper video");
 const container = document.querySelector(".container");
 const maxScrollTop = container.clientHeight - window.innerHeight;
 
@@ -342,6 +375,10 @@ const isFirefoxOrSafari =
          last = frames[frameIndex];
       });
    });
+}
+
+
+
     </script>
 </body>
 </html>
