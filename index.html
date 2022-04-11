@@ -216,10 +216,16 @@ section > h1{
         <h1>TEST</h1>
     </div>
     <script>
-var UserAgent = navigator.userAgent.toLowerCase();
 
-if(UserAgent.indexOf("iphone")!== -1){
-    const videoWrapper = document.querySelector(".videoWrapper");
+var userAgent = navigator.userAgent.toLowerCase();
+
+
+if (userAgent.match('iphone') || userAgent.match('ipod'))
+
+{    //아이폰
+
+  alert("iphone");
+  const videoWrapper = document.querySelector(".videoWrapper");
     const video = document.createElement("video");
     video.src = 'Test_Donga.mp4';
     video.id = 'v0';
@@ -246,8 +252,20 @@ if(UserAgent.indexOf("iphone")!== -1){
         vid.currentTime = (window.pageYOffset-1000)/400;
     }, 40);
 
+} 
 
-} else{
+else if (userAgent.match('ipad'))
+
+{    //아이패드
+
+  alert("ipad");
+
+}       
+
+else
+
+{
+    alert("else");
     var video = document.querySelector(".container .videoWrapper video");
 const container = document.querySelector(".container");
 const maxScrollTop = container.clientHeight - window.innerHeight;
@@ -375,8 +393,8 @@ const isFirefoxOrSafari =
          last = frames[frameIndex];
       });
    });
-}
 
+}
 
 
     </script>
