@@ -228,6 +228,9 @@ section > h1{
     const video = document.createElement("video");
     video.src = 'Test_Donga.mp4';
     video.id = 'v0';
+    video.setAttribute("autoplay","autoplay");
+    video.setAttribute("playsinline", "playsinline")
+    video.setAttribute("muted", "muted");
     videoWrapper.appendChild(video);
 
     var vid = document.getElementById('v0');
