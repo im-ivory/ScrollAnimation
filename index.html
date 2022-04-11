@@ -243,7 +243,7 @@ if (userAgent.match('iphone') || userAgent.match('ipod'))
 
     // refresh video frames on interval for smoother playback
     setInterval(function(){
-        vid.currentTime = (window.pageYOffset-1000)/400;
+        vid.currentTime = (window.pageYOffset-1000)/1000;
     }, 40);
 
 } 
